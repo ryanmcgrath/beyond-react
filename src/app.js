@@ -3,7 +3,7 @@ import {render} from 'react-dom';
 import {Router, Route, browserHistory} from 'react-router';
 import RepositoryIndex from './components/repository-index';
 import RepositoryList from './components/repository-list';
-import CodeView from './components/code-viewer';
+import DiffView from './components/diff-viewer';
 
 
 class App extends React.Component {
@@ -42,7 +42,7 @@ render((
         <Route path="/" component={App}>
             <Route path=":username" component={RepositoryList} />
             <Route path=":username/:repository" component={RepositoryIndex} />
-            <Route path=":username/:repository/:sha" component={CodeView} />
+            <Route path=":username/:repository/:sha" component={DiffView} />
         </Route>
     </Router>
 ), document.getElementById('app'));
