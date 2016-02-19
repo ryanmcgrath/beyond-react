@@ -36,6 +36,26 @@ class App extends React.Component {
 
 App.childContextTypes = {params: React.PropTypes.object};
 
+window.highlighter = {
+    worker: new Worker('/src/worker.js'),
+    callbacks: {},
+
+    highlight: function(sha, str, callbackfn) {
+        this.callbacks[sha] = callbackfn;
+        this.worker.postMessage({
+            sha: sha, 
+            source: str
+        });
+    },
+
+    onMessage: function(event) {
+        window.highlighter.callbacks[event.data.sha](event.data.source);
+    }
+};
+
+window.highlighter.worker.onmessage = window.highlighter.onMessage;
+
+
 
 render((
     <Router history={browserHistory}>
