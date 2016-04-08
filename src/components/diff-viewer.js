@@ -47,12 +47,11 @@ class DiffView extends React.Component {
     }
 
     render() {
-        let sha = this.props.params.sha;
         return (
             <div className="diff-container">
-                <h1>Commit {sha} on {this.props.params.username}/{this.props.params.repository}</h1>
+                <h1>Commit {this.props.params.sha} on {this.props.params.username}/{this.props.params.repository}</h1>
                 {this.state.diff.files.map(function(file, i) {
-                    return <FileView sha={sha} file={file} key={i} />;
+                    return <FileView file={file} key={i} />;
                 })}
             </div>
         );

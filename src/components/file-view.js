@@ -1,24 +1,14 @@
 import React from 'react';
+import hljs from 'highlight.js';
 
 
 class FileView extends React.Component {
-    constructor(props) {
-        super(props);
-        this.updateCode = this.updateCode.bind(this);
-    }
-    
     componentDidMount() {
-        window.highlighter.highlight(
-            this.props.sha,
-            this.props.file.patch,
-            this.updateCode
-        );
+        hljs.highlightBlock(this.refs.source);
     }
 
-    componentWillUnmount() {}
+    componentWillUnmount() {
 
-    updateCode(source) {
-        this.refs.source.innerHTML = source;
     }
 
     render() {
